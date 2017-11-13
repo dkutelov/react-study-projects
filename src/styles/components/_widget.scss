@@ -1,0 +1,33 @@
+.widget {
+    background: #F4F3EE;
+    //background: $light-blue;
+    margin-bottom: $xl-size;
+}
+
+.widget-header {
+    //background: #45503B;
+    background-color: #929487;
+    //background-color: $blue;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: $m-size;
+}
+
+.widget-header__title {
+    margin:0;
+} 
+
+.widget-body__message {
+    font-size: 2rem;
+    color: $off-white;
+    margin:0;
+    padding: $l-size;
+    text-align: center;
+    border-bottom: 1px solid lighten($light-blue, 10%);
+}
+
+.widget-body__options {
+    margin: 0;
+    padding: 0;
+}
