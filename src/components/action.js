@@ -7,7 +7,7 @@ const Action = (props) => (
             disabled={!props.hasOptions}
             onClick={props.handlePick}
         >
-            What should I do?
+            {props.isEnglish ? 'What should I do?' : 'С какво да се захвана сега?'}
         </button>
     </div>
 );

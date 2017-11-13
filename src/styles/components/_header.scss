@@ -3,7 +3,7 @@
     //background: #383431;
     background: #3E4E50;
     margin-bottom: $m-size;
-    padding: $m-size 0;
+    padding: $xl-size 0 $m-size;
 }
 
 .header__title {
@@ -25,6 +25,7 @@
 @media (min-width: $desktop-breakpoint) {
     .header {
         margin-bottom: $xl-size;
+        padding-top: $m-size;
     }
     .header__title {
         font-size: $l-size;

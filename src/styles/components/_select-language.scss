@@ -1,0 +1,23 @@
+.select-language {
+    position: absolute;
+    display: flex;
+    right: 2rem;
+    top: 1rem;
+
+    span {
+        margin-right:  1rem;
+    }
+
+    select {
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        -moz-appearance: window;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        outline: 0;
+        padding: 3px 5px; 
+        background-color: #ffffff;
+        border: 1px solid #ffffff;
+        border-radius: 2px;  
+    }
+}

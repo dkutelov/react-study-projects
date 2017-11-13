@@ -8,7 +8,7 @@ const Option = (props) => (
             onClick={ (e) => {
             props.deleteOption(props.optionText);
         }}>
-        Remove
+        { props.isEnglish ? 'Remove' : 'Изтрий' }
         </button>
     </li>
 );

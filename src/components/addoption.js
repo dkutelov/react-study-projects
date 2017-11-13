@@ -25,7 +25,7 @@ class AddOption extends React.Component {
                     <div>
                         <button
                             className="button button--wide button--medium button--purple">
-                            Add option
+                            { this.props.isEnglish ? 'Add option' : 'Добави опция' }
                         </button>
                     </div>
                 </form>
