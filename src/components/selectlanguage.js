@@ -4,6 +4,7 @@ const SelectLanguage = (props) => (
    <div className="select-language">
         <span>{props.isEnglish ? 'Language' : 'Eзик'}</span>
         <select 
+            className="form-control"
             value={ props.isEnglish ? 'english' : 'bulgarian' }
             onChange={(e) => {
                 props.selectLanguage(e.target.value);

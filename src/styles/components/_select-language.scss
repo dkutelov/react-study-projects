@@ -1,14 +1,20 @@
 .select-language {
     position: absolute;
     display: flex;
+    align-items: center;
     right: 2rem;
     top: 1rem;
+    background-color: #ffffff;
+    padding: 0.25rem 0.5rem;
 
     span {
+        display: block;
+        font-size: 1.4rem;
         margin-right:  1rem;
     }
 
     select {
+        display: block;
         -webkit-appearance: button;
         -moz-appearance: button;
         -moz-appearance: window;
@@ -16,7 +22,6 @@
         -moz-user-select: none;
         outline: 0;
         padding: 3px 5px; 
-        background-color: #ffffff;
         border: 1px solid #ffffff;
         border-radius: 2px;  
     }
