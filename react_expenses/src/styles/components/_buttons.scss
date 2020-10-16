@@ -1,0 +1,47 @@
+.button {
+	background-color: $dark-grey;
+	border: none;
+	color: white;
+	padding: $s-size;
+	font-weight: 300;
+	font-size: $font-size-large;
+	margin: 10px 5px;
+	text-transform: capitalize;
+	transition: background-color 0.5s ease-out;
+
+	&:hover {
+		background-color: lighten($dark-grey, 10%);
+	}
+
+	&--user-login {
+		padding: 7.5px $s-size;
+		margin: 5px;
+	}
+
+	&--no-background {
+		background: none;
+		text-transform: capitalize;
+	}
+
+	&--link {
+		display: inline-block;
+		text-decoration: none;
+		line-height: 1;
+		text-transform: capitalize;
+		&:hover {
+			color: white;
+			text-decoration: none;
+		}
+	}
+	&--danger {
+		background: $red;
+
+		&:hover {
+			background-color: lighten($red, 15%);
+		}
+	}
+
+	&--no-top-margin {
+		margin-top: 0;
+	}
+}

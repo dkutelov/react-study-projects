@@ -1,0 +1,52 @@
+.box-layout {
+	background: url('/images/bg-large.jpg');
+	background-size: cover;
+	background-position: center center;
+	height: 100vh;
+	width: 100vw;
+	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+
+	&__box {
+		background: fade-out(white, 0.15);
+		border-radius: 3px;
+		text-align: center;
+		width: 35rem;
+		margin-top: 5rem;
+		padding: $l-size $m-size;
+		display: flex;
+		flex-direction: column;
+	}
+	&__menu {
+		flex-grow: 1;
+	}
+	&__title {
+		margin: 0 0 $m-size 0;
+		line-height: 1;
+	}
+}
+
+.login-form {
+	margin-top: 10px;
+
+	&__input {
+		display: flex;
+		justify-content: space-between;
+
+		label {
+			margin-left: 1rem;
+		}
+
+		input {
+			padding: 7.5px;
+			margin-bottom: 5px;
+			margin-right: 1rem;
+		}
+	}
+
+	&__submit {
+		text-align: center;
+	}
+}
