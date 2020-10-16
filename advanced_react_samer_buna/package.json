@@ -1,0 +1,43 @@
+{
+  "name": "advanced-react",
+  "version": "1.0",
+  "description": "Advanced react course",
+  "main": "lib/server.js",
+  "author": "dk",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_PATH=./lib pm2 start lib/server.js --watch --interpreter babel-node",
+    "webpack": "webpack -wd",
+    "stop": "pm2 stop lib/server.js",
+    "test": "jest --watch"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.7.1",
+    "react-test-renderer": "^16.8.6"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "lodash.debounce": "^4.0.8",
+    "lodash.pickby": "^4.6.0",
+    "pm2": "^3.5.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  }
+}
