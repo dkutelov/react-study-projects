@@ -1,0 +1,5 @@
+export const FETCH_USER = 'FETCH_USER'
+export const LOGOUT_USER = 'LOGOUT_USER'
+export const FETCH_SURVEY = 'FETCH_SURVEY'
+export const FETCH_SURVEYS = 'FETCH_SURVEYS'
+export const DELETE_SURVEY = 'DELETE_SURVEY'

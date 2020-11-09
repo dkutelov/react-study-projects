@@ -1,0 +1,24 @@
+.sort-button {
+	margin-left: 1rem;
+}
+
+.sort-button:last-of-type {
+	margin-right: 0.75rem;
+}
+
+.pie-chart {
+	margin: 0 auto;
+}
+
+.yes,
+.no {
+	font-size: 5rem;
+}
+
+.no {
+	color: red;
+}
+
+.yes {
+	color: rgb(18, 147, 154);
+}

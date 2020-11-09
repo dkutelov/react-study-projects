@@ -1,0 +1,89 @@
+/* Variables */
+:root {
+	--mainBrown: rgb(111, 78, 55);
+	--mainYellow: rgb(255, 158, 9);
+	--mainGrey: #ece8dc;
+	--mainWhite: #fff;
+	--mainDark: rgb(51, 51, 51);
+}
+
+/* Global */
+body {
+	background: var(--mainWhite);
+	color: var(--mainDark);
+	font-family: 'Roboto', Geneva, Tahoma, sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Lato', Courier, monospace !important;
+	letter-spacing: 0.1rem;
+}
+
+.text-yellow {
+	color: var(--mainYellow);
+}
+
+/* Navbar Cart */
+.cart-icon {
+	cursor: pointer;
+	color: var(--mainYellow);
+	font-size: 1.5rem;
+}
+
+.cart-icon-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+/* Background  Images */
+.default-background,
+.about-background {
+	min-height: 70vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(rgba(111, 78, 55, 0.3), rgba(111, 78, 55, 0.3));
+	background-position: center;
+	background-size: cover;
+}
+
+.about-background {
+	min-height: 60vh;
+}
+
+.title-background {
+	text-shadow: 2px 8px 6px rgba(0, 0, 0, 0.5),
+		0px -5px 35px rgba(255, 255, 255, 0.1);
+}
+
+/* About us button home page */
+.btn-yellow {
+	color: var(--mainYellow);
+	border-color: var(--mainYellow);
+}
+
+.btn-yellow:hover {
+	color: var(--mainBrown);
+	background-color: var(--mainYellow);
+}
+
+/* Menu section */
+.menu,
+.contact {
+	background-color: var(--mainGrey);
+}
+
+/* Footer */
+.footer {
+	background-color: var(--mainDark);
+}
+
+.footer h3 {
+	color: var(--mainGrey);
+	font-weight: 300 !important;
+}

@@ -1,0 +1,6 @@
+export { default as fillGrid } from './fill-grid'
+export { default as indentifySquare } from './identify-square'
+export { default as shaffle } from './shaffle'
+export { default as checkGrid } from './check-grid'
+export { default as createFullGrid } from './create-full-grid'
+export * from './is-in'

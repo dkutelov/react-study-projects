@@ -1,0 +1,581 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf100
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red102\green177\blue50;\red253\green128\blue8;\red5\green68\blue254;
+\red133\green0\blue175;\red174\green0\blue240;\red251\green2\blue7;\red52\green52\blue52;\red134\green205\blue77;
+\red85\green142\blue40;\red77\green77\blue77;}
+{\*\expandedcolortbl;;\cssrgb\c46532\c73327\c25364;\cssrgb\c100000\c57637\c0;\cssrgb\c0\c38136\c99824;
+\cssrgb\c59982\c16236\c74118;\cssrgb\c74609\c21796\c95404;\cssrgb\c100000\c14913\c0;\csgray\c26515;\cssrgb\c58755\c82661\c37297;
+\cssrgb\c39975\c61335\c20601;\csgray\c37475;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww21220\viewh16640\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 https://github.com/wesbos/Advanced-React\
+in stepped-solutions: code per sections\
+\
+\cf2 NEXT.JS\cf0 \
+https://nextjs.org\
+- react tooling\
+- serverside rendering\
+- routing\
+\
+key folders\
+- components\
+- pages\
+\
+in pages, create react components\
+- do not need to import React\
+\
+\cf3 Next JS Link w/o reloading\cf0 \
+\cf4 import Link from 'next/link'\
+<Link href="/sell">\
+	<a>Sell</a>\
+</Link>\
+\cf0 - in next.js we do not need to define routes, we place the component file in the pages folder and the name of the file is the path\
+\
+\cf3 App component\cf0 \
+- NEXT.JS provides app component but we need custom app\
+- we create _app.js in pages\
+\cf4 import App, \{ Container \} from 'next/app'\
+class _app extends App \{\
+	render () \{\
+		const \{ Component \} = this.props\
+		return (\
+			<Container>\
+				<p>Hey I am on evey page</p>\
+				<Component />\
+			</Container>\
+		)\
+	\}\
+\}\
+export default _app\
+\cf0 -  content of all js files in pages will now be wrapped in container and content we put in the container\
+\
+- we create Page component that renders layout and children and we wrap all in the container with this Page component\
+\
+\cf3 Meta\cf0 \
+- next.js provides Meta component for the meta html tags\
+- we can update info from the component\
+- we need to import in page.js above header\
+\
+\cf2 STYLED COMPONENTS\cf0 \
+\
+- css in js\
+- instal vscode-styled-components\
+https://www.styled-components.com\
+\
+\cf3 Button example\
+\cf4 import styled from 'styled-components'\
+const MyButton = styled.button`\
+	background: red;\
+	font-size: 100px;\
+`\cf0 \
+in component\
+\cf4 <MyButton>Click Me</MyButton>\cf0 \
+- we can use nested selectors like in Sass, for example span in the button and class selectors\
+\
+\cf3 Button example with props and logic\cf0 \
+\cf4 const MyButton = styled.button`\
+	background: red;\
+	font-size: $\{props => (props.huge ? '100px' : '50px'\};\
+`\
+<MyButton huge>Click Me</MyButton>\cf0 \
+- we can also pass value huge='100px'\
+\
+\cf3 Using theme\cf0 \
+\cf4 import styled, \{ ThemeProvider \} from 'styled-components'\
+const theme = \{red : '#FF0000'\}\
+const StyledPage = styled.div`\
+	background: white;\
+	color: $\{(props) => props.theme.red\};\
+`\cf0 \
+in the component we wrap with:\
+\cf4 <ThemeProvider theme=\{theme\}>\
+	<StyledPage>\
+\cf0 \
+\
+\cf3 NProgress - loading bar on top\cf0 \
+- in header\
+\cf4 import Router from 'next/router'\
+import NProgress from 'nprogress'\
+\
+Router.onRouteChangeStart = () => \{\
+	NProgress.start()\
+\}\
+Router.onRouteChangeComplete = () => \{\
+	NProgress.done()\
+\}\
+Router.onRouteChangeError = () => \{\
+	NProgress.done()\
+\}\
+\cf0 - in Meta we need to bring in CSS\
+\cf4 <link rel="stylesheet" type="text/css" href="/static/nprogress.css" />\cf0 \
+\
+\cf3 Server-side loading of css\cf0 \
+- in pages folder we need to create the file _document.js with standard content from nextjs site or styled-components site\
+\
+
+\fs48 \cf2 Prisma
+\fs24 \cf0 \
+\
+- create an account or log in with Github\
+I logged with Github\
+\
+- we need to install cli - done\
+\cf4 npm i -g prisma\
+\cf0 \
+in terminal in the backend folder\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf5 prisma login\cf0 \
+- we allow access and close\
+\
+\cf5 prisma init\cf0 \
+- select demo server\
+service - name of project siccck-fits\
+stage - dev\
+language - don't generate\
+\
+\
+variables.env.sample - do not ever push on github !!! - rename to .env\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 FRONTEND_URL="http://localhost:7777"\
+PRISMA_ENDPOINT="https://eu1.prisma.sh/dariy-kutelov/siccck-fits/dev"\
+PRISMA_SECRET="jjdlkwjedfmreflmlferhflekwporeti"\
+APP_SECRET="jwtsecret123"\
+STRIPE_SECRET="sk_123youchanget his"\
+PORT=4444\
+\cf0 - change prisma_endpoint and prisma_secret - to random string\
+- end_point comes from prisma_yml before changing\
+\
+- change prisma.yml  to\
+\cf4 endpoint: $\{env:PRISMA_ENDPOINT\}\
+datamodel: datamodel.prisma\
+\cf0 #secret: $\{env:PRISMA_SECRET\}\
+#uncomment in production\
+\cf4 hooks:\
+  post-deploy:\
+    - graphql get-schema -p prisma\
+\cf0 #pools back the graphQL schema\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf5 prisma deploy\cf0 \
+he did a script:\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 npm run deploy\cf0 \
+\
+! - means it is required\
+@ - called directives like @unique\
+\
+We can add new fields in datamodel.prisma\
+after we add the field(s) we need to run prisma deploy again\
+in the link that prints after deploy:\
+https://eu1.prisma.sh/dariy-kutelov/siccck-fits/dev\
+opens the playground\
+\cf4 https://eu1.prisma.sh/dariy-kutelov/siccck-fits/dev\cf0 \
+\
+create new data\
+\cf4 mutation \{\
+  createUser(data: \{\
+    name: "Dariy Kutelov"\
+    email: "dari@cool.com"    \
+  \}) \{\
+    name\
+    email\
+  \}\
+\}\
+\cf0 - second object is what to return after data are created, needs to be provided\
+\cf4 \{\
+    name\
+    email\
+  \}\
+\cf0 \
+query data\
+\cf4 query \{\
+  users(where: \{\
+    name_contains: "Sarah"\
+  \}) \{\
+    id\
+    name\
+  \}\
+\}\
+\cf0  \
+\cf4 https://eu1.prisma.sh/dariy-kutelov/sick-fits-dk/dev\cf0 \
+- we can see and update the data\
+\
+prisma adds createdAt and updatedAt\
+\
+\
+\cf2 graphQL Yoga\
+\cf0 \
+- prisma gives basic mutations and queries\
+- for any logic we use Yoga\
+in src we create\
+db.js\
+to connect to our prisma db\
+react - apolo client - yoga - prisma db\
+- yoga is express server that sits on top of apollo server\
+\
+\cf3 Set up File structure\
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf5 db.js\cf0  file - definition types, endpoint and secret key\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 const \{ Prisma \} = require('prisma-binding')\
+\
+const db = new Prisma(\{\
+    typeDefs: 'src/generated/prisma.graphql',\
+    endpoint: process.env.PRISMA_ENDPOINT,\
+    secret: process.env.PRISMA_SECRET,\
+    debug: false\
+\})\
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf6 createServer.js\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 const \{ GraphQLServer \} = require('graphql-yoga')\
+\
+const Mutation = require('./resolvers/Mutation')\
+const Query = require('./resolvers/Query')\
+const db = require('./db')\
+\
+function createServer() \{\
+    return new GraphQLServer(\{\
+        typeDefs: 'src/schema.graphql',\
+        resolvers: \{\
+            Mutation,\
+            Query\
+        \},\
+        resolverValidationOptions: \{\
+            requireResolversForResolveType: false\
+        \},\
+        context: req => (\{ ...req, db \})\
+    \})\
+\}\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf6 index.js\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 require('dotenv').config(\{ path: '.env' \})\
+const createServer = require('./createServer')\
+const db = require('./db')\
+\
+const server = createServer()\
+server.start(\{\
+        cors: \{\
+            credentials: true,\
+            origin: process.env.FRONTEND_URL\
+        \}\
+    \},\
+    deets => \{\
+        console.log(`Server is now running on port http://localhost:$\{deets.port\}`)\
+\
+    \}\
+)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf5 schema.graphql\cf0  - definitions of the data for the Yoga server\
+\
+in \cf5 resolvers\cf0  folder \cf5 Query.js\cf0  and \cf5 Mutation.js\cf0  resolvers\
+\
+run: yarn dev\
+passes --inspect - we can see in Chrome console\
+\
+Dogs example - only on the Yoga layer - no Prisma or DB is involved\
+we use only the server\
+\
+in schema.graphql\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 type Mutation \{\
+	createDog(name: String!): Dog\
+\}\
+\
+type Query \{\
+	dogs: [Dog!]!\
+\}\
+\
+type Dog \{\
+	name: String!\
+\}\
+\cf0 \
+in resolvers/Query.js\
+\cf4 const Query = \{\
+    dogs(parent, args, ctx, info) \{\
+        global.dogs = global.dogs || []\
+        return global.dogs\
+    \}\
+\};\
+\
+module.exports = Query\
+\cf0 \
+in resolvers/Mutation.js\
+\cf4 const Mutations = \{\
+    createDog(parent, args, ctx, info) \{\
+        global.dogs = global.dogs || []\
+        const newDog = \{\
+            name: args.name\
+        \}\
+        global.dogs.push(newDog)\
+        return newDog\
+    \}\
+\};\
+\
+module.exports = Mutations\cf0 \
+\
+
+\fs48 \cf2 Steps to add data in Yoga and Prisma\
+
+\fs24 \cf0 \
+\cf3 1. Create definition in datamodel.graphql or .prisma\cf0 \
+\cf4 type Item \{\
+	id: ID! @unique\
+	title: String!\
+	description: String!\
+	image: String\
+	largeImage: String\
+	price: Int!\
+	createdAt: DateTime!\
+	updatedAt: DateTime!\
+	# user: User!\
+\}\
+\cf0 \
+\cf3 2. Every time we need to deploy\cf0 \
+yarn deploy\
+- after every change in the data\
+\
+\cf3 3. Create data definitions\
+\cf0 in schema.graphql\
+JS will be interfacing with schema.graphql\
+- it is not exposing all prisma, only the one that we specify\
+\cf4 # import * from './generated/prisma.graphql'\
+\
+type Mutation \{\
+	createItem(title: String, description: String, price: Int, image: String, largeImage: String): Item!\
+\}\
+\
+type Query \{\
+	items: [Item!]\
+\}\
+\cf0 - the import brings all types from prisma e.g. Item to avoid re-writing\
+\
+\cf3 4. Create the mutation\
+\cf0 \
+\cf4 const Mutations = \{\
+    \cf7 async\cf4  createItem(parent, args, ctx, info) \{\
+        const item = \cf7 await\cf4  ctx.db.mutation.createItem(\{\
+            data: \{\
+                ...args\
+            \}\
+        \}, info)\
+        return item\
+    \}\
+\}\
+\
+module.exports = Mutations\
+\cf0 - db comes from the context to grab the prisma mutation createItem\
+\
+\cf3 5. Create query\
+\cf4 const \{\
+    forwardTo\
+\} = require('prisma-binding')\
+\
+const Query = \{\
+    items: forwardTo('db')\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf8     // async items(parent, args, ctx, info) \{\
+    //     const items = await ctx.db.query.items()\
+    //     return items\
+    // \}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 \}\
+\
+module.exports = Query\
+\cf0 - if the query is existing in prisma we can forward\
+- otherwise we write our own query\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs48 \cf9 \
+Apollo Client\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \
+replaces Redux\
+- store management\
+- fetching queries\
+- cashing\
+- error and loading state\
+\
+- for all above we need to use links in addition to the main apollo-client like apollo-link-state, apollo-cache-inmemory, apollo-link-http, apollo-link-error\
+- apollo boost - package of all main links\
+\
+- in lib/withData.js setting up apollo\
+\cf4 import withApollo from 'next-with-apollo';\
+import ApolloClient from 'apollo-boost';\
+import \{ endpoint \} from '../config';\
+\
+function createClient(\{ headers \}) \{\
+  return new ApolloClient(\{\
+    uri: process.env.NODE_ENV === 'development' ? endpoint : endpoint,\
+    request: operation => \{\
+      operation.setContext(\{\
+        fetchOptions: \{\
+          credentials: 'include',\
+        \},\
+        headers,\
+      \});\
+    \},\
+  \});\
+\}\
+\
+export default \cf7 withApollo\cf4 (createClient);\
+\cf0 - endpoint is yoga api\
+- request is including the credentials\
+\
+set up in app.js\
+\
+\cf4 import App, \{ Container \} from 'next/app'\
+import \{ ApolloProvider \} from 'react-apollo'\
+\
+import Page from '../components/page'\
+import withData from '../lib/withData'\
+\
+class _app extends App \{\
+	static async getInitialProps (\{ Component, ctx \}) \{\
+		let pageProps = \{\}\
+		if (Component.getInitialProps) \{\
+			pageProps = await Component.getInitialProps(ctx)\
+		\}\
+		pageProps.query = ctx.query\
+		return \{ pageProps \}\
+	\}\
+	render () \{\
+		const \{ Component, apollo, pageProps \} = this.props\
+		return (\
+			<Container>\
+				<ApolloProvider client=\{apollo\}>\
+					<Page>\
+						<Component \{...pageProps\} />\
+					</Page>\
+				</ApolloProvider>\
+			</Container>\
+		)\
+	\}\
+\}\
+\
+export default \cf7 withData\cf4 (_app)\cf0 \
+\
+\
+Cloudinary\
+\
+to use w/o server we need to login, go to Settings\
+Upload presets -> Add upload preset\
+name sickfits, unsigned, folder sickfits\
+Uploading manipulations -> Incoming transformations -> edit\
+resize: 500 Mode Scale Quality Auto\
+Eager Transformations - add\
+resize: 1000 Mode Scale Quality Auto\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs48 \cf9 \
+User and authetication
+\fs24 \cf0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf3 User definition extension\cf0 \
+\
+\cf4 enum Permission \{\
+	ADMIN\
+	USER\
+	ITEMCREATE\
+	ITEMUPADTE\
+	ITEMDELETE\
+	PERMISSIONUPDATE\
+\}\
+\
+type User \{\
+  id: ID! @unique\
+  name: String!\
+  email: String! @unique\
+	password: String!\
+	resetToken: String\
+	resetTokenExpiry: String\
+	permissions: [Permission]\
+\}\
+\cf0 \
+- enum is type with preset values\
+- open the prisma.io from the terminal\
+\cf4 prisma console\cf0 \
+\
+After adding new required field we better delete the existing data in prisma.io via double click. We can use force flag but not recommended!\
+\
+We need to deploy after the changes of the type\
+\cf4 prisma deploy\cf0 \
+\
+\
+Due to server side rendering we can not use browser local storage for JMT - JSON tokens, we need to reed and process the cookies in the backend to render authenticated user content like shopping card.\
+\
+\
+Set Yoga server to accept cokies\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf10 in index.js\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 const cookieParser = require('cookie-parser')\
+server.express.use(cookieParser())\
+\cf0 - parse the cookie strings into an object\
+\
+in \cf10 schema.graphql\cf0  declare the signup mutation\
+\cf4 type Mutation \{\
+	signup(email: String!, password: String!, name: String!): User!\
+\}\cf0 \
+\
+in \cf10 resolvers/Mutation.js\cf0 \
+\cf4 const bcrypt = require('bcryptjs')\
+const jwt = require('jsonwebtoken')\
+async signup (parent, args, ctx, info) \{\
+	\cf11 //avoid cap letter confusion with emails\cf4 \
+	args.email = args.email.toLowerCase()\
+	\cf11 // create hash\cf4 \
+	const password = await bcrypt.hash(args.password, 10)\
+	\cf11 // create the user in db; enum we need to use set;\cf4 \
+	const user = await \cf7 ctx.db.mutation.createUser\cf4 (\
+		\{\
+			data : \{\
+				...args,\
+				password,\
+				permissions : \{ set : ['USER']\}\
+				\}\
+			\},\
+			info\
+		)\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf11 	// create JWT token to auto sign in after registration\cf4 \
+	const token = jwt.sign(\{ userId: user.id \}, process.env.APP_SECRET)\
+	\cf11 // set jwt as cookie on the response\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 	\cf7 ctx.response.cookie\cf4 ('token', token, \{\
+		httpOnly : true, \cf11 // not accessible for JS code\cf4 \
+		maxAge   : 1000 * 60 * 60 * 24 * 365 \cf11 // 1 year cookie\
+\cf4 	\})\
+	\cf11 // return user to the browser\cf4 \
+	return user\
+\}\cf0 \
+!!! bcrypt is async\
+- salt key or length of salt key ensures the hashing is unique\
+\
+Frontend auth\
+- form method="POST" to avoid the default GET if JS walls down. If get, the password will be shown in URL.\
+\
+\
+\
+\
+\
+\
+// Links\
+https://www.udemy.com/nodejs-the-complete-guide/\
+https://egghead.io/lessons/npm-execute-npx-commands-with-npm_-environment-variables\
+https://medium.com/@brianalois/best-graphql-node-api-template-for-sql-jwt-2018-5e956b715143\
+\
+\
+212.50.10.50\
+212.50.10.51\
+\
+\
+}
